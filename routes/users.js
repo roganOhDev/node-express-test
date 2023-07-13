@@ -1,8 +1,11 @@
-var express = require('express');
-var router = express.Router();
+import Router from "express";
+import {ApiError} from "../errors/apiError.js";
 
-router.get('/users', function(req, res, next) {
-  res.send('respond with a resource');
+const userRouter = Router();
+
+userRouter.get('/users', function (req, res, next) {
+    throw new ApiError(400, 'This is a bad request.');
+    // res.send('respond with a resource');
 });
 
-module.exports = router;
+export default userRouter;

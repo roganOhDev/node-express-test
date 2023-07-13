@@ -1,18 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+import createError from 'http-errors';
+import express from 'express';
+import indexRouter from './routes/index.js';
+import {connect} from './config/connection.js';
+import {renderFile} from "ejs";
 
 var app = express();
 
-app.engine('html', require('ejs').renderFile);
+app.engine('html', renderFile);
 app.set('view engine', 'html');
 
 app.use(indexRouter);
-app.use(usersRouter);
+// app.use(usersRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
+    connect();
     next(createError(404));
 });
 
@@ -32,6 +33,7 @@ app.use(function (err, req, res, next) {
     res.render('error');
 });
 
-module.exports = app;
 
 app.listen(3000)
+
+export default app;

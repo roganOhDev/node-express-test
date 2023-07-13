@@ -1,9 +1,7 @@
 import {Router} from "express";
 
-const indexRouter = Router();
+export const router = Router();
 
-indexRouter.get('/index', function(req, res, next) {
+router.get('/index', function(req, res, next) {
   res.render('index', { title: 'My Index Page' });
 });
-
-export default indexRouter;

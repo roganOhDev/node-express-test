@@ -1,11 +1,11 @@
 import createError from 'http-errors';
 import express from 'express';
-import userRouter from './routes/users.js';
-import indexRouter from './routes/index.js';
+import {router as userRouter} from './routes/users.js';
+import {router as indexRouter} from './routes/index.js';
 import {connect} from './config/connection.js';
 import {renderFile} from "ejs";
 
-var app = express();
+const app = express();
 
 app.engine('html', renderFile);
 app.set('view engine', 'html');

@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 import express from 'express';
-import {router as userRouter} from './routes/users.js';
+import {router as userRouter} from './domain/userController.js';
 import {router as indexRouter} from './routes/index.js';
 import {connect} from './config/connection.js';
 import {renderFile} from "ejs";

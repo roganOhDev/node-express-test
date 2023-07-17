@@ -1,20 +1,18 @@
 import {User} from "./user.js";
 import {sequelize} from "../config/connection.js";
+import {ApiError} from "../errors/apiError.js";
 
-export function createUser() {
-    let user;
-    sequelize.sync().then(() => {
-        User.create({
-            firstName: "asdf",
-            age: 12
-        }).then(res => {
-            user = res;
-            console.log("user created");
-        }).catch((err) => {
-            console.log(err);
-        })
-    });
-    console.log("createUser");
-    console.log(user.firstName)
+export async function createUser(firstName ,age = 0) {
+    await sequelize.sync();
+    try {
+        const res = await User.create({
+            firstName: firstName,
+            age: age
+        });
+        console.log("user created");
+        return res;
+    } catch (err) {
+        throw new ApiError("user not created");
+    }
 }
 

@@ -11,7 +11,7 @@ app.engine('html', renderFile);
 app.set('view engine', 'html');
 
 app.use(indexRouter);
-app.use(userRouter);
+app.use('/user', userRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));

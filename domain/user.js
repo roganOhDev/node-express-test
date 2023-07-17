@@ -11,7 +11,7 @@ export const User = sequelize.define("users", {
     firstName: {
         type: DataTypes.STRING,
         allowNull: false,
-        field: 'first_name'
+        field: 'first_name',
     },
     lastName: {
         type: DataTypes.STRING,
@@ -19,5 +19,6 @@ export const User = sequelize.define("users", {
     },
     age: {
         type: DataTypes.INTEGER,
+        defaultValue: 1
     }
 });

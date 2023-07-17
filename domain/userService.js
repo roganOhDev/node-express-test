@@ -2,7 +2,7 @@ import {User} from "./user.js";
 import {sequelize} from "../config/connection.js";
 import {ApiError} from "../errors/apiError.js";
 
-export async function createUser(firstName ,age = 0) {
+export async function createUser(firstName ,age ) {
     await sequelize.sync();
     try {
         const res = await User.create({

@@ -1,16 +1,24 @@
 import mysql from 'mysql2';
+import {Sequelize} from "sequelize";
 
-const con = mysql.createConnection({
-    host: process.env.HOST,
-    port: process.env.PORT,
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-});
+export const sequelize = new Sequelize(
+    'test',
+    process.env.DB_USERNAME,
+    process.env.DB_PASSWORD,
+    {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: 'mysql',
+        define: {
+            timestamps: false
+        }
+    }
+);
 
 export function connect() {
-    con.connect(function (err) {
-        console.log("your port : " + process.env.PORT);
-        if (err) throw err;
-        console.log("Connected!");
+    sequelize.authenticate().then(() => {
+        console.log('Connection has been established successfully.');
+    }).catch((error) => {
+        console.error('Unable to connect to the database: ', error);
     });
 }

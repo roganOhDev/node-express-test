@@ -2,9 +2,13 @@ import Router from "express";
 import {createUser} from "./userService.js";
 import {ApiError} from "../errors/apiError.js";
 
-export const router = Router('/user');
+export const router = Router();
 
-router.post('', function (req, res, next) {
+router.get('/user', function (req, res, next) {
+    createUser();
+    res.send('ok');
+})
+router.post('/user', function (req, res, next) {
     createUser();
     res.send('ok');
 })
